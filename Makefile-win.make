@@ -15,8 +15,6 @@ INCDIR = $(PREFIX)/include
 LIBDIR = $(PREFIX)/lib
 MANDIR = $(PREFIX)/share/man
 
-BUILDFOLDER = /build
-
 # No user-serviceable parts below this line
 
 VERSION:=$(shell ./getversion)
@@ -65,14 +63,12 @@ $(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
-	mkdir --parents $(BUILDFOLDER)/bin; mv libgif.dll $_
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
 
 libutil.dll: $(UOBJECTS) $(UHEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS) -L. -lgif
-	mkdir --parents $(BUILDFOLDER)/bin; mv libutil.dll $_
 
 libutil.a: $(UOBJECTS) $(UHEADERS)
 	$(AR) rcs libutil.a $(UOBJECTS)
@@ -144,7 +140,7 @@ dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
 
 # build-dist
 build-dist:
-	cd "$(PROJECTDIR)" && @echo $(projectdir)
+	cd "$(PROJECTDIR)"
 	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz *
 
 # Auditing tools.
