@@ -15,7 +15,7 @@ INCDIR = $(PREFIX)/include
 LIBDIR = $(PREFIX)/lib
 MANDIR = $(PREFIX)/share/man
 
-PROJECTDIR = /
+#PROJECTDIR = /
 
 # No user-serviceable parts below this line
 
