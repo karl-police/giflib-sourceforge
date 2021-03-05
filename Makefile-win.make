@@ -9,7 +9,7 @@ SHELL = /bin/sh
 TAR = tar
 INSTALL = install
 
-PREFIX = /usr/local
+#PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
 INCDIR = $(PREFIX)/include
 LIBDIR = $(PREFIX)/lib
