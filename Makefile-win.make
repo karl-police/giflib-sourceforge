@@ -97,6 +97,11 @@ install-lib:
 	$(INSTALL) -m 755 libgif.dll "$(DESTDIR)$(LIBDIR)/libgif.dll.$(LIBVER)"
 	ln -sf libgif.dll.$(LIBVER) "$(DESTDIR)$(LIBDIR)/libgif.dll.$(LIBMAJOR)"
 	ln -sf libgif.dll.$(LIBMAJOR) "$(DESTDIR)$(LIBDIR)/libgif.dll"
+
+	$(INSTALL) -m 644 libutil.a "$(DESTDIR)$(LIBDIR)/libutil.a"
+	$(INSTALL) -m 755 libutil.dll "$(DESTDIR)$(LIBDIR)/libutil.dll.$(LIBVER)"
+	ln -sf libutil.dll.$(LIBVER) "$(DESTDIR)$(LIBDIR)/libutil.dll.$(LIBMAJOR)"
+	ln -sf libutil.dll.$(LIBMAJOR) "$(DESTDIR)$(LIBDIR)/libutil.dll"
 install-man:
 	$(INSTALL) -d "$(DESTDIR)$(MANDIR)/man1"
 	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
@@ -107,7 +112,8 @@ uninstall-include:
 	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
 uninstall-lib:
 	cd "$(DESTDIR)$(LIBDIR)" && \
-		rm -f libgif.a libgif.dll libgif.dll.$(LIBMAJOR) libgif.dll.$(LIBVER)
+		rm -f libgif.a libgif.dll libgif.dll.$(LIBMAJOR) libgif.dll.$(LIBVER) \
+		libutil.a libutil.dll libutil.dll.$(LIBMAJOR) libutil.dll.$(LIBVER)
 uninstall-man:
 	cd "$(DESTDIR)$(MANDIR)/man1" && rm -f $(shell cd doc >/dev/null && echo *.1)
 
