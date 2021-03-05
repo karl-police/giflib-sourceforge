@@ -9,11 +9,13 @@ SHELL = /bin/sh
 TAR = tar
 INSTALL = install
 
-PREFIX = /usr/local/build
+PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
 INCDIR = $(PREFIX)/include
 LIBDIR = $(PREFIX)/lib
 MANDIR = $(PREFIX)/share/man
+
+PROJECTDIR = /
 
 # No user-serviceable parts below this line
 
@@ -58,6 +60,7 @@ LDLIBS=libgif.a -lm
 
 all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
+	@echo $(PROJECTDIR)
 
 $(UTILS):: libgif.a libutil.a
 
@@ -140,10 +143,7 @@ dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
 
 # build-dist
 build-dist:
-	srcdir = pwd
-	@echo $(srcdir)
-	cd "$(DESTDIR)$(PREFIX)" && @echo $(srcdir)
-	pwd
+	cd "$(PROJECTDIR)" && @echo $(srcdir)
 	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz *
 
 # Auditing tools.
