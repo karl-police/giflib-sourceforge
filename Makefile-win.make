@@ -54,3 +54,59 @@ UTILS = $(INSTALLABLE) \
 	gifwedge
 
 LDLIBS=libgif.a -lm
+
+# Make distribution tarball
+#
+# We include all of the XML, and also generated manual pages
+# so people working from the distribution tarball won't need xmlto.
+
+EXTRAS =     README \
+	     NEWS \
+	     TODO \
+	     COPYING \
+	     getversion \
+	     ChangeLog \
+	     build.adoc \
+	     history.adoc \
+	     control \
+	     doc/whatsinagif \
+	     doc/gifstandard \
+
+DSOURCES = Makefile *.[ch]
+DOCS = doc/*.xml doc/*.1 doc/*.html doc/index.html.in doc/00README doc/Makefile
+ALL =  $(DSOURCES) $(DOCS) tests pic $(EXTRAS)
+giflib-$(VERSION).tar.gz: $(ALL)
+	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz $(ALL)
+giflib-$(VERSION).tar.bz2: $(ALL)
+	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -cjf giflib-$(VERSION).tar.bz2 $(ALL)
+
+dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
+
+# Auditing tools.
+
+# Check that getversion hasn't gone pear-shaped.
+version:
+	@echo $(VERSION)
+
+# cppcheck should run clean
+cppcheck:
+	cppcheck --inline-suppr --template gcc --enable=all --suppress=unusedFunction --force *.[ch]
+
+# Verify the build
+distcheck: all
+	$(MAKE) giflib-$(VERSION).tar.gz
+	tar xzvf giflib-$(VERSION).tar.gz
+	$(MAKE) -C giflib-$(VERSION)
+	rm -fr giflib-$(VERSION)
+
+# release using the shipper tool
+release: all distcheck
+	$(MAKE) -C doc website
+	shipper --no-stale version=$(VERSION) | sh -e -x
+	rm -fr doc/staging
+
+# Refresh the website
+refresh: all
+	$(MAKE) -C doc website
+	shipper --no-stale -w version=$(VERSION) | sh -e -x
+	rm -fr doc/staging
