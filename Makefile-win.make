@@ -140,7 +140,9 @@ dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
 
 # build-dist
 build-dist:
-	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz $(BINDIR)  $(INCDIR) $(LIBDIR) $(MANDIR)
+	cd "$(DESTDIR)$(PREFIX)"
+	dir
+	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz
 
 # Auditing tools.
 
