@@ -140,7 +140,7 @@ dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
 
 # build-dist
 build-dist:
-pwd
+	pwd
 	cd "$(DESTDIR)$(PREFIX)"
 	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz *
 
