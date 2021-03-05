@@ -65,14 +65,14 @@ $(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
-	mv libgif.dll $(BUILDFOLDER)/bin
+	mv -f libgif.dll $(BUILDFOLDER)/bin
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
 
 libutil.dll: $(UOBJECTS) $(UHEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS) -L. -lgif
-	mv libutil.dll $(BUILDFOLDER)/bin
+	mv -f libutil.dll $(BUILDFOLDER)/bin
 
 libutil.a: $(UOBJECTS) $(UHEADERS)
 	$(AR) rcs libutil.a $(UOBJECTS)
