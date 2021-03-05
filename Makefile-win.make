@@ -138,6 +138,10 @@ giflib-$(VERSION).tar.bz2: $(ALL)
 
 dist: giflib-$(VERSION).tar.gz giflib-$(VERSION).tar.bz2
 
+# build-dist
+build-dist:
+	$(TAR) --transform='s:^:giflib-$(VERSION)/:' -czf giflib-$(VERSION).tar.gz $(PREFIX)
+
 # Auditing tools.
 
 # Check that getversion hasn't gone pear-shaped.
