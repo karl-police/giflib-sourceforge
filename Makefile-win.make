@@ -69,7 +69,7 @@ libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
 
 libutil.dll: $(UOBJECTS) $(UHEADERS)
-	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS)
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS) -L. -lgif
 	dir
 
 libutil.a: $(UOBJECTS) $(UHEADERS)
