@@ -86,7 +86,7 @@ check: all
 
 install: all install-bin install-include install-lib install-man
 install-bin: $(INSTALLABLE)
-	$(INSTALL) -dc "$(DESTDIR)$(BINDIR)"
+	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
 install-include:
 	$(INSTALL) -d "$(DESTDIR)$(INCDIR)"
