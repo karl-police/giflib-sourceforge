@@ -107,7 +107,7 @@ install-man:
 	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
 uninstall: uninstall-man uninstall-include uninstall-lib uninstall-bin
 uninstall-bin:
-	cd "$(DESTDIR)$(BINDIR)" && rm -f $(INSTALLABLE)
+	cd "$(DESTDIR)$(BINDIR)" && rm -f $(UTILS)
 uninstall-include:
 	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
 uninstall-lib:
