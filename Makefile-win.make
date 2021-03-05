@@ -62,15 +62,15 @@ all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 $(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
-	#$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -o libgif.dll $(OBJECTS)
+#$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
 
 libutil.dll: $(UOBJECTS) $(UHEADERS)
-	#$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -o libutil.dll $(UOBJECTS)
+#$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libutil.dll.$(LIBMAJOR) -o libutil.dll $(UOBJECTS)
 
 libutil.a: $(UOBJECTS) $(UHEADERS)
 	$(AR) rcs libutil.a $(UOBJECTS)
