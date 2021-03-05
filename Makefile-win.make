@@ -85,7 +85,7 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
-	@echo $(VERSION)
+	@echo $(SOURCES:.c=.o)
 install-bin: $(INSTALLABLE)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
