@@ -90,7 +90,7 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
-install-bin: $(UTILS)
+install-bin: $(INSTALLABLE)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
 install-include:
@@ -107,7 +107,7 @@ install-man:
 	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
 uninstall: uninstall-man uninstall-include uninstall-lib uninstall-bin
 uninstall-bin:
-	cd "$(DESTDIR)$(BINDIR)" && rm -f $(UTILS)
+	cd "$(DESTDIR)$(BINDIR)" && rm -f $(INSTALLABLE)
 uninstall-include:
 	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
 uninstall-lib:
