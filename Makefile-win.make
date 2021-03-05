@@ -2,7 +2,8 @@
 
 OFLAGS = -O0 -g
 OFLAGS  = -O2
-CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
+#CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
+CFLAGS  = 
 
 SHELL = /bin/sh
 TAR = tar
@@ -54,6 +55,61 @@ UTILS = $(INSTALLABLE) \
 	gifwedge
 
 LDLIBS=libgif.a -lm
+
+all: libgif.so libgif.a libutil.so libutil.a $(UTILS)
+	$(MAKE) -C doc
+
+$(UTILS):: libgif.a libutil.a
+
+libgif.so: $(OBJECTS) $(HEADERS)
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libgif.so.$(LIBMAJOR) -o libgif.so $(OBJECTS)
+
+libgif.a: $(OBJECTS) $(HEADERS)
+	$(AR) rcs libgif.a $(OBJECTS)
+
+libutil.so: $(UOBJECTS) $(UHEADERS)
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,-soname -Wl,libutil.so.$(LIBMAJOR) -o libutil.so $(UOBJECTS)
+
+libutil.a: $(UOBJECTS) $(UHEADERS)
+	$(AR) rcs libutil.a $(UOBJECTS)
+
+clean:
+	rm -f $(UTILS) $(TARGET) libgetarg.a libgif.a libgif.so libutil.a libutil.so *.o
+	rm -f libgif.so.$(LIBMAJOR).$(LIBMINOR).$(LIBPOINT)
+	rm -f libgif.so.$(LIBMAJOR)
+	rm -fr doc/*.1 *.html doc/staging
+
+check: all
+	$(MAKE) -C tests
+
+# Installation/uninstallation
+
+install: all install-bin install-include install-lib install-man
+install-bin: $(INSTALLABLE)
+	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
+	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
+install-include:
+	$(INSTALL) -d "$(DESTDIR)$(INCDIR)"
+	$(INSTALL) -m 644 gif_lib.h "$(DESTDIR)$(INCDIR)"
+install-lib:
+	$(INSTALL) -d "$(DESTDIR)$(LIBDIR)"
+	$(INSTALL) -m 644 libgif.a "$(DESTDIR)$(LIBDIR)/libgif.a"
+	$(INSTALL) -m 755 libgif.so "$(DESTDIR)$(LIBDIR)/libgif.so.$(LIBVER)"
+	ln -sf libgif.so.$(LIBVER) "$(DESTDIR)$(LIBDIR)/libgif.so.$(LIBMAJOR)"
+	ln -sf libgif.so.$(LIBMAJOR) "$(DESTDIR)$(LIBDIR)/libgif.so"
+install-man:
+	$(INSTALL) -d "$(DESTDIR)$(MANDIR)/man1"
+	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
+uninstall: uninstall-man uninstall-include uninstall-lib uninstall-bin
+uninstall-bin:
+	cd "$(DESTDIR)$(BINDIR)" && rm -f $(INSTALLABLE)
+uninstall-include:
+	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
+uninstall-lib:
+	cd "$(DESTDIR)$(LIBDIR)" && \
+		rm -f libgif.a libgif.so libgif.so.$(LIBMAJOR) libgif.so.$(LIBVER)
+uninstall-man:
+	cd "$(DESTDIR)$(MANDIR)/man1" && rm -f $(shell cd doc >/dev/null && echo *.1)
 
 # Make distribution tarball
 #
