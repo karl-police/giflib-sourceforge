@@ -2,8 +2,8 @@
 
 OFLAGS = -O0 -g
 OFLAGS  = -O2
-CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-#CFLAGS  = 
+#CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
+CFLAGS  = 
 
 SHELL = /bin/sh
 TAR = tar
