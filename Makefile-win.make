@@ -1,4 +1,5 @@
 # Makefile for the GIFLIB package for Windows
+test: @echo $(SOURCES:.c=.o)
 
 OFLAGS = -O0 -g
 OFLAGS  = -O2
@@ -85,7 +86,6 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
-	@echo $(SOURCES:.c=.o)
 install-bin: $(INSTALLABLE)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
