@@ -1,6 +1,6 @@
 # Makefile for the GIFLIB package for Windows
 test:
-	@echo $(SOURCES:.c=.o)
+	@echo $(SOURCES:c=o)
 
 OFLAGS = -O0 -g
 OFLAGS  = -O2
