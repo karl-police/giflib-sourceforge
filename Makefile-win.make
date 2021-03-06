@@ -8,7 +8,6 @@ OFLAGS  = -O2
 SHELL = /bin/sh
 TAR = tar
 INSTALL = install
-FOO = $PATH
 
 PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
@@ -154,7 +153,6 @@ build-dist:
 
 # Check that getversion hasn't gone pear-shaped.
 version:
-	@echo $(value FOO)
 	@echo $(VERSION)
 
 # cppcheck should run clean
