@@ -54,12 +54,12 @@ UTILS = $(INSTALLABLE) \
 	gifsponge \
 	gifwedge
 
-#LDLIBS=libgif.a -lm
+LDLIBS=libgif.a -lm -c
 
 all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
 
-#$(UTILS):: libgif.a libutil.a
+$(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
