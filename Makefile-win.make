@@ -154,7 +154,6 @@ build-dist:
 # Check that getversion hasn't gone pear-shaped.
 version:
 	FOO = $PATH
-	@echo $(FOO)
 	@echo $(value FOO)
 	@echo $(VERSION)
 
