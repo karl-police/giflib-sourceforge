@@ -62,7 +62,6 @@ all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 $(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
-	@echo $($PATH)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
 
 libgif.a: $(OBJECTS) $(HEADERS)
@@ -86,6 +85,7 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
+	@echo $($PATH)
 install-bin: $(UTILS)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
