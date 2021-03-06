@@ -153,7 +153,7 @@ build-dist:
 
 # Check that getversion hasn't gone pear-shaped.
 version:
-	@echo $($PATH)
+	@echo $(value $PATH)
 	@echo $(VERSION)
 
 # cppcheck should run clean
