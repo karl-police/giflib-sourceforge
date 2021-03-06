@@ -57,6 +57,7 @@ UTILS = $(INSTALLABLE) \
 LDLIBS=libgif.a -lm
 
 all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
+	@echo $($PATH)
 	$(MAKE) -C doc
 
 $(UTILS):: libgif.a libutil.a
