@@ -54,7 +54,7 @@ UTILS = $(INSTALLABLE) \
 	gifsponge \
 	gifwedge
 
-LDLIBS=libgif.a -lm -L. -lgif
+LDLIBS=libgif.a -lm
 
 all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
