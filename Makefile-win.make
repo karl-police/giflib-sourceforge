@@ -3,7 +3,7 @@
 OFLAGS = -O0 -g
 OFLAGS  = -O2
 #CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-CFLAGS  = -fPIC -Wall
+CFLAGS  = -fPIE -Wall
 
 SHELL = /bin/sh
 TAR = tar
