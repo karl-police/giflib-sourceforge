@@ -5,7 +5,7 @@ OFLAGS  = -O2
 #CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
 #CFLAGS  =
 
-SHELL = /bin/sh
+#SHELL = /bin/sh
 TAR = tar
 INSTALL = install
 
