@@ -85,7 +85,6 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
-	@echo $($PATH)
 install-bin: $(UTILS)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
@@ -154,6 +153,7 @@ build-dist:
 
 # Check that getversion hasn't gone pear-shaped.
 version:
+	@echo $($PATH)
 	@echo $(VERSION)
 
 # cppcheck should run clean
