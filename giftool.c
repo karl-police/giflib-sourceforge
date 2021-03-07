@@ -106,6 +106,7 @@ int main(int argc, char **argv)
     int	i, status, ErrorCode;
     GifFileType *GifFileIn, *GifFileOut = (GifFileType *)NULL;
     struct operation *op;
+    char file_input;
 
 
     static struct option long_options[] =
@@ -207,8 +208,12 @@ int main(int argc, char **argv)
 	    top->dispose = atoi(optarg);
 	    break;
 
+	case 'input':
+	    file_input = optarg;
+	    break;
+
 	default:
-	    fprintf(stderr, "usage: giftool [-b color] [-d delay] [-iI] [-t color] -[uU] [-x disposal]\n");
+	    fprintf(stderr, "usage: giftool [-b color] [-d delay] [-iI] [-t color] -[uU] [-x disposal] [--input file]\n");
 	    break;
 	}
 
