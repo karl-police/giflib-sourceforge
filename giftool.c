@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
     static struct option long_options[] =
     {
-        {"input", required_argument, NULL, NULL},
+        {"input", required_argument, NULL, 0},
         {NULL, 0, NULL, 0}
     };
 
