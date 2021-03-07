@@ -56,13 +56,13 @@ UTILS = \
 
 LDLIBS=libgif.dll -lm
 
-all: libgif.dll libgif.a $(INSTALLABLE)
+all: libgif.dll libgif.a $(INSTALLABLE) libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
 
-$(UTILS)::libutil.dll
+$(UTILS):: libgif.dll libutil.dll
 
 libgif.dll: $(OBJECTS) $(HEADERS)
-	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.a -o libgif.dll $(OBJECTS)
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
