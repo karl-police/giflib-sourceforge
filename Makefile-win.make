@@ -3,7 +3,7 @@
 OFLAGS = -O0 -g
 OFLAGS  = -O2
 #CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-CFLAGS  = -Wall
+CFLAGS  = -Wall -lmingwex
 
 SHELL = /bin/sh
 TAR = tar
@@ -62,7 +62,7 @@ all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 $(UTILS):: libgif.dll libutil.dll
 
 libgif.dll: $(OBJECTS) $(HEADERS)
-	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS) -Bdynamic -lmingw32 -lmsvcrt -lkernel32
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
