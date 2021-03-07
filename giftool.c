@@ -107,12 +107,19 @@ int main(int argc, char **argv)
     GifFileType *GifFileIn, *GifFileOut = (GifFileType *)NULL;
     struct operation *op;
 
+
+    static struct option long_options[] =
+    {
+        {"input", required_argument, NULL, NULL},
+        {NULL, 0, NULL, 0}
+    };
+
     /*
      * Gather operations from the command line.  We use regular
      * getopt(3) here rather than Gershom's argument getter because
      * preserving the order of operations is important.
      */
-    while ((status = getopt(argc, argv, "a:b:d:f:i:n:p:s:u:x:")) != EOF)
+    while ((status = getopt_long(argc, argv, "a:b:d:f:i:n:p:s:u:x:", long_options, NULL)) != EOF)
     {
 	if (top >= operations + MAX_OPERATIONS) {
 	    (void)fprintf(stderr, "giftool: too many operations.");
