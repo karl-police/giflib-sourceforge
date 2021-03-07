@@ -3,7 +3,7 @@
 OFLAGS = -O0 -g
 OFLAGS  = -O2
 #CFLAGS  = -std=gnu99 -fPIC -Wall -Wno-format-truncation $(OFLAGS)
-CFLAGS  = -Wall -lmingwex
+CFLAGS  = -Wall
 
 SHELL = /bin/sh
 TAR = tar
@@ -54,12 +54,12 @@ UTILS = $(INSTALLABLE) \
 	gifsponge \
 	gifwedge
 
-LDLIBS=libgif.dll -lm
+LDLIBS=libgif.a -lm
 
 all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
 
-$(UTILS):: libgif.dll libutil.dll
+$(UTILS):: libgif.a libutil.a
 
 libgif.dll: $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
