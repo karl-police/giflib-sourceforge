@@ -85,7 +85,7 @@ check: all
 # Installation/uninstallation
 
 install: all install-bin install-include install-lib install-man
-install-bin: $(INSTALLABLE)
+install-bin: $(UTILS)
 	$(INSTALL) -d "$(DESTDIR)$(BINDIR)"
 	$(INSTALL) $^ "$(DESTDIR)$(BINDIR)"
 install-include:
