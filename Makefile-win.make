@@ -62,7 +62,7 @@ all: libgif.dll libgif.a $(INSTALLABLE)
 $(UTILS)::libutil.dll
 
 libgif.dll: $(OBJECTS) $(HEADERS)
-	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.dll.$(LIBMAJOR) -o libgif.dll $(OBJECTS)
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -Wl,--out-implib,libgif.a -o libgif.dll $(OBJECTS)
 
 libgif.a: $(OBJECTS) $(HEADERS)
 	$(AR) rcs libgif.a $(OBJECTS)
