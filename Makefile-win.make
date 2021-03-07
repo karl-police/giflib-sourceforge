@@ -44,8 +44,7 @@ INSTALLABLE = \
 # Some utilities are only used internally for testing.
 # There is a parallel list in doc/Makefile.
 # These are all candidates for removal in future releases.
-UTILS = $(INSTALLABLE) \
-	gifbg \
+UTILS = gifbg \
 	gifcolor \
 	gifecho \
 	giffilter \
@@ -56,7 +55,7 @@ UTILS = $(INSTALLABLE) \
 
 LDLIBS=libgif.dll -lm
 
-all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
+all: libgif.dll libgif.a libutil.dll libutil.a $(INSTALLABLE) $(UTILS)
 	$(MAKE) -C doc
 
 $(UTILS):: libgif.dll libutil.dll
