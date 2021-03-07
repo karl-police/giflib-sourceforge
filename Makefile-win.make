@@ -44,7 +44,7 @@ INSTALLABLE = \
 # Some utilities are only used internally for testing.
 # There is a parallel list in doc/Makefile.
 # These are all candidates for removal in future releases.
-UTILS = \
+UTILS = $(INSTALLABLE) \
 	gifbg \
 	gifcolor \
 	gifecho \
@@ -56,7 +56,7 @@ UTILS = \
 
 LDLIBS=libgif.dll -lm
 
-all: libgif.dll libgif.a $(INSTALLABLE) libutil.dll libutil.a $(UTILS)
+all: libgif.dll libgif.a libutil.dll libutil.a $(UTILS)
 	$(MAKE) -C doc
 
 $(UTILS):: libgif.dll libutil.dll
@@ -74,7 +74,7 @@ libutil.a: $(UOBJECTS) $(UHEADERS)
 	$(AR) rcs libutil.a $(UOBJECTS)
 
 clean:
-	rm -f $(INSTALLABLE) $(UTILS) $(TARGET) libgetarg.a libgif.a libgif.dll libutil.a libutil.dll *.o
+	rm -f $(UTILS) $(TARGET) libgetarg.a libgif.a libgif.dll libutil.a libutil.dll *.o
 	rm -f libgif.dll.$(LIBMAJOR).$(LIBMINOR).$(LIBPOINT)
 	rm -f libgif.dll.$(LIBMAJOR)
 	rm -fr doc/*.1 *.html doc/staging
@@ -107,7 +107,7 @@ install-man:
 	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
 uninstall: uninstall-man uninstall-include uninstall-lib uninstall-bin
 uninstall-bin:
-	cd "$(DESTDIR)$(BINDIR)" && rm -f $(INSTALLABLE) $(UTILS)
+	cd "$(DESTDIR)$(BINDIR)" && rm -f $(UTILS)
 uninstall-include:
 	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
 uninstall-lib:
