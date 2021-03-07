@@ -74,7 +74,7 @@ libutil.a: $(UOBJECTS) $(UHEADERS)
 	$(AR) rcs libutil.a $(UOBJECTS)
 
 clean:
-	rm -f $(UTILS) $(TARGET) libgetarg.a libgif.a libgif.dll libutil.a libutil.dll *.o
+	rm -f $(INSTALLABLE) $(UTILS) $(TARGET) libgetarg.a libgif.a libgif.dll libutil.a libutil.dll *.o
 	rm -f libgif.dll.$(LIBMAJOR).$(LIBMINOR).$(LIBPOINT)
 	rm -f libgif.dll.$(LIBMAJOR)
 	rm -fr doc/*.1 *.html doc/staging
@@ -107,7 +107,7 @@ install-man:
 	$(INSTALL) -m 644 doc/*.1 "$(DESTDIR)$(MANDIR)/man1"
 uninstall: uninstall-man uninstall-include uninstall-lib uninstall-bin
 uninstall-bin:
-	cd "$(DESTDIR)$(BINDIR)" && rm -f $(UTILS)
+	cd "$(DESTDIR)$(BINDIR)" && rm -f $(INSTALLABLE) $(UTILS)
 uninstall-include:
 	rm -f "$(DESTDIR)$(INCDIR)/gif_lib.h"
 uninstall-lib:
