@@ -106,7 +106,7 @@ int main(int argc, char **argv)
     int	i, status, ErrorCode;
     GifFileType *GifFileIn, *GifFileOut = (GifFileType *)NULL;
     struct operation *op;
-    char file_input;
+    char file_input[];
 
 
     static struct option long_options[] =
