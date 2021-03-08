@@ -106,8 +106,7 @@ int main(int argc, char **argv)
     int	i, status, ErrorCode;
     GifFileType *GifFileIn, *GifFileOut = (GifFileType *)NULL;
     struct operation *op;
-    char *GifFileName, **FileName = NULL;
-    char *file_input;
+    char *GifFileName = NULL;
 
 
     static struct option long_options[] =
@@ -211,7 +210,7 @@ int main(int argc, char **argv)
 
 	/* --input */
 	case 1:
-	    file_input = optarg;	
+	    GifFileName = optarg;
 	    break;
 
 	default:
@@ -223,8 +222,8 @@ int main(int argc, char **argv)
     }	
 
     /* read in a GIF */
-    if (GifFileName == NULL) {
-        if ((GifFileIn = DGifOpenFileHandle(0, &ErrorCode)) == NULL) {
+    if (GifFileName != NULL) {
+        if ((GifFileIn = DGifOpenFileHandle(GifFileName, &ErrorCode)) == NULL) {
     	PrintGifError(ErrorCode);
     	exit(EXIT_FAILURE);
         }
