@@ -210,6 +210,7 @@ int main(int argc, char **argv)
 
 	case 'input':
 	    file_input = optarg;
+	    fprintf(stderr, "Argument: %s", file_input);	
 	    break;
 
 	default:
