@@ -141,6 +141,8 @@ int main(int argc, char **argv)
 
 	case 'd':
 	    top->mode = delaytime;
+	    printf("D %d\n", optarg);
+	    printf("D %s\n", optarg);
 	    top->delay = atoi(optarg);
 	    break;
 
@@ -271,7 +273,6 @@ int main(int argc, char **argv)
 		GraphicsControlBlock gcb;
 
 		DGifSavedExtensionToGCB(GifFileIn, selected[i], &gcb);
-		printf("D %d\n", gcb.DelayTime);
 		gcb.DelayTime = op->delay;
 		EGifGCBToSavedExtension(&gcb, GifFileIn, selected[i]);
 	    }
