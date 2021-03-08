@@ -141,7 +141,6 @@ int main(int argc, char **argv)
 
 	case 'd':
 	    top->mode = delaytime;
-	    printf("D %s\n", optarg);
 	    top->delay = atoi(optarg);
 	    break;
 
