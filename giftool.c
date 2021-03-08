@@ -223,7 +223,7 @@ int main(int argc, char **argv)
 
     /* read in a GIF */
     if (GifFileName != NULL) {
-        if ((GifFileIn = DGifOpenFileHandle(*GifFileName, &ErrorCode)) == NULL) {
+        if ((GifFileIn = DGifOpenFileHandle(GifFileName, &ErrorCode)) == NULL) {
     	PrintGifError(ErrorCode);
     	exit(EXIT_FAILURE);
         }
