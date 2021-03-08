@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
     static struct option long_options[] =
     {
-        {"input", required_argument, NULL, 0},
+        {"input", required_argument, NULL, 1},
         {NULL, 0, NULL, 0}
     };
 
@@ -208,7 +208,7 @@ int main(int argc, char **argv)
 	    top->dispose = atoi(optarg);
 	    break;
 
-	case 'input':
+	case 1:
 	    file_input = optarg;
 	    fprintf(stderr, "Argument: %s", file_input);	
 	    break;
