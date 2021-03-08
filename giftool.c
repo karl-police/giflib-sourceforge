@@ -106,6 +106,7 @@ int main(int argc, char **argv)
     int	i, status, ErrorCode;
     GifFileType *GifFileIn, *GifFileOut = (GifFileType *)NULL;
     struct operation *op;
+    char *GifFileName, **FileName = NULL;
     char *file_input;
 
 
@@ -222,9 +223,18 @@ int main(int argc, char **argv)
     }	
 
     /* read in a GIF */
-    if ((GifFileIn = DGifOpenFileHandle(0, &ErrorCode)) == NULL) {
-	PrintGifError(ErrorCode);
-	exit(EXIT_FAILURE);
+    if (GifFileName == NULL) {
+        if ((GifFileIn = DGifOpenFileHandle(0, &ErrorCode)) == NULL) {
+    	PrintGifError(ErrorCode);
+    	exit(EXIT_FAILURE);
+        }
+    }
+    else {
+        /* Use stdin instead: */
+        if ((GifFileIn = DGifOpenFileHandle(0, &ErrorCode)) == NULL) {
+    	PrintGifError(ErrorCode);
+    	exit(EXIT_FAILURE);
+        }
     }
     if (DGifSlurp(GifFileIn) == GIF_ERROR) {
 	PrintGifError(GifFileIn->Error);
