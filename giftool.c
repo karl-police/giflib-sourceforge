@@ -270,7 +270,6 @@ int main(int argc, char **argv)
 	    {
 		GraphicsControlBlock gcb;
 
-		printf("D %d\n", op->delay);
 		DGifSavedExtensionToGCB(GifFileIn, selected[i], &gcb);
 		gcb.DelayTime = op->delay;
 		EGifGCBToSavedExtension(&gcb, GifFileIn, selected[i]);
@@ -545,7 +544,6 @@ int main(int argc, char **argv)
 	    {
 		GraphicsControlBlock gcb;
 
-		printf("T %d\n", op->color);
 		DGifSavedExtensionToGCB(GifFileIn, selected[i], &gcb);
 		gcb.TransparentColor = op->color;
 		EGifGCBToSavedExtension(&gcb, GifFileIn, selected[i]);
