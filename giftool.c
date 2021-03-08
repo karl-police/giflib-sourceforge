@@ -208,9 +208,9 @@ int main(int argc, char **argv)
 	    top->dispose = atoi(optarg);
 	    break;
 
+	/* --input */
 	case 1:
-	    file_input = optarg;
-	    fprintf(stderr, "Argument: %s", file_input);	
+	    file_input = optarg;	
 	    break;
 
 	default:
