@@ -158,23 +158,23 @@ int main(int argc, char **argv)
 	    have_selection = true;
 	    nselected = 0;
 	    cp = optarg;
+	    char *cp_dup = strdup(cp);
 	    for (;;)
 	    {
-		size_t span = strspn(cp, "0123456789");
+		cp = strsep(&cp_dup, ",");
+		int check = sscanf(cp, "%d%c", &check, &check);
 
-		if (span > 0)
+		if (check > 0 && check != 2)
 		{
 		    selected[nselected++] = atoi(cp)-1;
-		    cp += span;
-		    if (*cp == '\0')
-			break;
-		    else if (*cp == ',')
-			continue;
+
+		    continue;
 		}
 
 		(void) fprintf(stderr, "giftool: bad selection.\n");
 		exit(EXIT_FAILURE);
 	    }
+	    free(cp_dup);
 	    break;
 
 	case 'p':
