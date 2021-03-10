@@ -158,15 +158,16 @@ int main(int argc, char **argv)
 	    have_selection = true;
 	    nselected = 0;
 	    cp = optarg;
+	    char *cp_token;
 	    char *cp_dup = strdup(cp);
 	    for (;;)
 	    {
-		cp = strsep(&cp_dup, ",");
-		int check = sscanf(cp, "%d%c", &check, &check);
+		cp_token = strsep(&cp_dup, ",");
+		int check = sscanf(cp_token, "%d%c", &check, &check);
 
 		if (check > 0 && check != 2)
 		{
-		    selected[nselected++] = atoi(cp)-1;
+		    selected[nselected++] = atoi(cp_token)-1;
 
 		    continue;
 		}
