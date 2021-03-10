@@ -8,6 +8,7 @@ SPDX-License-Identifier: MIT
 
 #include <stdio.h>
 #include <stdlib.h>
+#define _DEFAULT_SOURCE 1
 #include <string.h>
 #include <fcntl.h>
 #include <stdbool.h>
