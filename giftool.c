@@ -162,6 +162,7 @@ int main(int argc, char **argv)
 	    char *cp_dup = strdup(cp);
 	    for (;;)
 	    {
+		if (cp_dup == NULL) { break; }
 		cp_token = strsep(&cp_dup, ",");
 		int check = sscanf(cp_token, "%d%c", &check, &check);
 
